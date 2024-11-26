@@ -1,0 +1,20 @@
+name: teste commit
+
+on: [workflow_dispatch]
+
+jobs:
+  teste-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+      - run: echo "1" >> increment.txt
+      
+      - run: |
+      
+          git config --global user.email "teste@example.com"
+          git config --global user.name "testador"
+          git add .
+          git commit -m "teste commit"
+          git push origin
