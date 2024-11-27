@@ -19,8 +19,7 @@ jobs:
           git commit -m "teste commit"
           git push origin
 
-      - run: |
-          "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
-
       - name: verify permissions
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: gh auth status
