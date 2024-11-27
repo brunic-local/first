@@ -6,6 +6,8 @@ jobs:
   teste-commit:
     
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,13 +23,8 @@ jobs:
       #     git push origin
 
       - name: verify permissions
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: gh auth status
 
 
       - name: verify user
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: gh api status
-
+        run: gh api user
